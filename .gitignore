@@ -5,9 +5,16 @@
 /.pnp
 .pnp.js
 
+/swap/node_modules
+/swap/.env
+
+/server/node_modules
+/server/.env
+
+
+
 # testing
 /coverage
-
 # production
 /build
 

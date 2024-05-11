@@ -2,13 +2,30 @@
   "name": "swap",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
+    "@blockfrost/blockfrost-js": "^5.5.0",
+    "@minswap/sdk": "^0.2.2-beta",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.97",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "axios": "^1.6.8",
+    "fs": "0.0.1-security",
+    "http2": "^3.3.7",
+    "https": "^1.0.0",
+    "lucid-cardano": "^0.10.7",
+    "net": "^1.0.2",
+    "node-polyfill-webpack-plugin": "^3.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
+    "stream": "0.0.2",
+    "tls": "0.0.1",
+    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -34,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
   }
 }
