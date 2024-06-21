@@ -7,6 +7,38 @@ dotenv.config();
 
 app.use(cors());
 
+// async buildSwapExactOutTx(options) {
+//   const {
+//     sender,
+//     assetIn,
+//     assetOut,
+//     maximumAmountIn,
+//     expectedAmountOut,
+//     availableUtxos
+//   } = options;
+//   invariant(maximumAmountIn > 0n && expectedAmountOut > 0n, "amount in and out must be positive");
+//   const orderAssets = { [Asset.toString(assetIn)]: maximumAmountIn };
+//   const { batcherFee, reductionAssets } = this.calculateBatcherFee(availableUtxos, orderAssets);
+//   if (orderAssets["lovelace"]) {
+//     orderAssets["lovelace"] += FIXED_DEPOSIT_ADA + batcherFee;
+//   } else {
+//     orderAssets["lovelace"] = FIXED_DEPOSIT_ADA + batcherFee;
+//   }
+//   const datum = {
+//     sender,
+//     receiver: sender,
+//     receiverDatumHash: void 0,
+//     step: {
+//       type: OrderStepType.SWAP_EXACT_OUT,
+//       desiredAsset: assetOut,
+//       expectedReceived: expectedAmountOut
+//     },
+//     batcherFee,
+//     depositADA: FIXED_DEPOSIT_ADA
+//   };
+//   return await this.lucid.newTx().payToContract(ORDER_BASE_ADDRESS[this.networkId], Data.to(OrderDatum.toPlutusData(datum)), orderAssets).payToAddress(sender, reductionAssets).addSigner(sender).attachMetadata(674, { msg: [MetadataMessage.SWAP_EXACT_OUT_ORDER] }).complete();
+// }
+
 app.get("/swap", async (req, res) => {
   try {
     const { address, availableUtxos, rewardAddress } = req.query;
@@ -44,6 +76,7 @@ app.get("/swap", async (req, res) => {
     const necessaryAmountIn = (amountIn * (100n + slippageTolerance)) / 100n;
 
     const dex = new Dex(lucid);
+
     const tx = await dex.buildSwapExactOutTx({
       maximumAmountIn: necessaryAmountIn,
       assetIn: ADA,
